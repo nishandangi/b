@@ -35,7 +35,7 @@ button{width:200px;padding:5px;border-radius:20px;margin-bottom:5px;}
 
 <div   id="mypatro_nepali_date" onclick="getElementById('menu').style.display='none'"> </div>
 
-<img id="show" src="menu.png" onclick="getElementById('menu').style.display='inline'">
+<img id="show" src="menu.png" onclick="toggleMenu();">
 
 <!3.............>
 <div id="menu">
@@ -139,7 +139,14 @@ let script = document.createElement('script');
 script.src = 'https://mypatro.com/resources/nepali_date/nepali_date.js'; // API script
 document.head.appendChild(script);
 
-
+function toggleMenu() {
+        var menu = document.getElementById('menu');
+        if (menu.style.display === 'none') {
+            menu.style.display = 'inline';
+        } else {
+            menu.style.display = 'none';
+        }
+    }
 
 </script>
 
