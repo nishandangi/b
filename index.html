@@ -17,19 +17,21 @@
   user-select: none; /* Standard syntax */
 }
 iframe {
-    width: 100%;
+    width: 100%; margin: 0;
+    padding: 0;
     height: 5000px;
     border: none;}
 	
 #menu{position:fixed;top:25px;left:3px;background:pink;padding:10px;width:220px;
-	display: none;border-radius:20px;
-    
-	}
+	display: none;border-radius:20px;}
 
 #show{position:fixed;top:3px;Right:3px; background:white; border-radius:20px;}
-img{width:50px;height:50px;}
-#mypatro_nepali_date{width:100%;display: flex;align-items: center;justify-content: space-around; padding :5px;background:#000;color:#fff;}
+#shown{position:fixed;bottom:3px;Right:3px; background:white; border-radius:20px;}
 
+img{width:50px;height:50px;}
+#mypatro_nepali_date{ margin: 0;
+    padding: 0;
+width:99%;display: flex;align-items: center;justify-content: space-around; padding :5px;background:#000;color:#fff;}
 button{width:200px;padding:5px;border-radius:20px;margin-bottom:5px;}
 </style>
 <body>
@@ -38,11 +40,16 @@ button{width:200px;padding:5px;border-radius:20px;margin-bottom:5px;}
 
 <img id="show" src="menu.png" onclick="toggleMenu();">
 
+
 <!3.............>
 <div id="menu">
+      <button id="shareHubBtn">Share Hub</button>
+      <button id="nepseTradingBtn">Nepse Trading</button>
+
+
       <button id="shareSansarBtn">Share Sansar</button>
 	  
-      <button id="meroLaganiBtn">Mero Lagani</button>
+      <button id="meroLaganiBtn" >Mero Lagani</button>
       <button id="NepsealphaBtn">Nepse Alpha</button>
       <button id="chukulBtn">Chukul News</button>
       <button id="arthasarokarBtn">Artha Sarokar</button>
@@ -75,9 +82,22 @@ button{width:200px;padding:5px;border-radius:20px;margin-bottom:5px;}
 <script >
 // Event listeners for buttons
 
-//first dropdow 9 ()
+//first dropdow 11 ()
+
+
+document.getElementById('shareHubBtn').addEventListener('click', function() {   document.getElementById('menu').style.display = 'none';
+  document.getElementById('iframeContainer').innerHTML = '<iframe src="https://nepsesharehub.com/news" allowfullscreen></iframe>';});
+
+document.getElementById('nepseTradingBtn').addEventListener('click', function() {   document.getElementById('menu').style.display = 'none';
+  document.getElementById('iframeContainer').innerHTML = '<iframe src="https://www.news.nepsetrading.com/tag/stock?lang=np" allowfullscreen></iframe>';});
+
 document.getElementById('shareSansarBtn').addEventListener('click', function() {   document.getElementById('menu').style.display = 'none';
   document.getElementById('iframeContainer').innerHTML = '<iframe src="https://www.sharesansar.com/category/latest" allowfullscreen></iframe>';});
+
+function sharesansar() {
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('iframeContainer').innerHTML = '<iframe src="" allowfullscreen></iframe>';
+}
 
 document.getElementById('meroLaganiBtn').addEventListener('click', function() {
             document.getElementById('menu').style.display = 'none'; // Ensure 'menu' is hidden
