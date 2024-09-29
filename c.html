@@ -41,8 +41,9 @@
   <button id="fullscreenBtn">Current Time</button>
   <iframe id="nepse" src="https://sharehubnepal.com/"></iframe>
 
-  <script>
+ <script>
     const fullscreenBtn = document.getElementById('fullscreenBtn');
+    let wakeLock = null;
 
     // Function to format time with leading zeroes if needed
     function formatTime(num) {
@@ -69,11 +70,31 @@
       }
     }
 
+    // Function to request the wake lock to prevent screen from turning off
+    async function requestWakeLock() {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock is active');
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
+    }
+
+    // Automatically request wake lock on page load to keep the screen on
+    document.addEventListener('visibilitychange', () => {
+      if (wakeLock !== null && document.visibilityState === 'visible') {
+        requestWakeLock();
+      }
+    });
+
     // Update the time every second
     setInterval(updateTime, 1000);
 
     // Add event listener to the button for full-screen toggle
     fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    // Request wake lock when the page loads
+    requestWakeLock();
 
     // Initialize the time when the page loads
     updateTime();
