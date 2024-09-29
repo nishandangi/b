@@ -23,7 +23,7 @@
       top: 10px;
       right: 10px;
       padding: 10px 20px;
-      font-size: 16px;
+      font-size: 32px;
       cursor: pointer;
       background-color: #4CAF50;
       color: white;
@@ -38,11 +38,25 @@
   </style>
 </head>
 <body>
-  <button id="fullscreenBtn">Go Fullscreen</button>
+  <button id="fullscreenBtn">Current Time</button>
   <iframe id="nepse" src="https://sharehubnepal.com/"></iframe>
 
   <script>
     const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    // Function to format time with leading zeroes if needed
+    function formatTime(num) {
+      return num < 10 ? `0${num}` : num;
+    }
+
+    // Function to update the button text with the current time
+    function updateTime() {
+      const now = new Date();
+      const hours = formatTime(now.getHours());
+      const minutes = formatTime(now.getMinutes());
+      const seconds = formatTime(now.getSeconds());
+      fullscreenBtn.textContent = `${hours}:${minutes}:${seconds}`;
+    }
 
     // Function to toggle full-screen mode
     function toggleFullscreen() {
@@ -55,8 +69,14 @@
       }
     }
 
-    // Add event listener to the button
+    // Update the time every second
+    setInterval(updateTime, 1000);
+
+    // Add event listener to the button for full-screen toggle
     fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+    // Initialize the time when the page loads
+    updateTime();
   </script>
 </body>
 </html>
