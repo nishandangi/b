@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nepse live</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    iframe {
+      position: fixed;
+      top: -515px; /* Existing iframe position */
+      left: -50px;
+      width: 4000px;
+      height: 1900%;
+      border: none;
+      zoom: 3.5;
+    }
+    #fullscreenBtn {
+      position: fixed !important;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      z-index: 1000; /* Ensure the button is above the iframe */
+    }
+    #fullscreenBtn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <button id="fullscreenBtn">Go Fullscreen</button>
+  <iframe id="nepse" src="https://sharehubnepal.com/"></iframe>
+
+  <script>
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    // Function to toggle full-screen mode
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((err) => {
+          alert(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Add event listener to the button
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+  </script>
+</body>
+</html>
