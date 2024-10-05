@@ -11,7 +11,7 @@
     }
     iframe {
       position: fixed;
-      top: -210px; /* Existing iframe position */
+      top: -210px; 
       left: -50px;
       width: 4000px;
       height: 1900%;
@@ -30,7 +30,7 @@
       border: none;
       border-radius: 5px;
       transition: background-color 0.3s ease;
-      z-index: 1000; /* Ensure the button is above the iframe */
+      z-index: 1000; 
     }
     #fullscreenBtn:hover {
       background-color: #45a049;
@@ -41,63 +41,62 @@
   <button id="fullscreenBtn">Current Time</button>
   <iframe id="nepse" src="https://sharehubnepal.com/"></iframe>
 
- <script>
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
-    let wakeLock = null;
+<script>
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  let wakeLock = null;
 
-    // Function to format time with leading zeroes if needed
-    function formatTime(num) {
-      return num < 10 ? `0${num}` : num;
+  // Function to format time with leading zeroes if needed
+  function formatTime(num) {
+    return num < 10 ? `0${num}` : num;
+  }
+
+  // Function to update the button text with the current time
+  function updateTime() {
+    const now = new Date();
+    const hours = formatTime(now.getHours());
+    const minutes = formatTime(now.getMinutes());
+    const seconds = formatTime(now.getSeconds());
+    fullscreenBtn.textContent = `${hours}:${minutes}:${seconds}`;
+  }
+
+  // Function to toggle full-screen mode
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        alert(`Error attempting to enable full-screen mode: ${err.message}`);
+      });
+    } else {
+      document.exitFullscreen();
     }
+  }
 
-    // Function to update the button text with the current time
-    function updateTime() {
-      const now = new Date();
-      const hours = formatTime(now.getHours());
-      const minutes = formatTime(now.getMinutes());
-      const seconds = formatTime(now.getSeconds());
-      fullscreenBtn.textContent = `${hours}:${minutes}:${seconds}`;
+  // Function to request the wake lock to prevent screen from turning off
+  async function requestWakeLock() {
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+    } catch (err) {
+      console.error(`${err.name}, ${err.message}`);
     }
+  }
 
-    // Function to toggle full-screen mode
-    function toggleFullscreen() {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch((err) => {
-          alert(`Error attempting to enable full-screen mode: ${err.message}`);
-        });
-      } else {
-        document.exitFullscreen();
-      }
+  // Automatically request wake lock on page load to keep the screen on
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && wakeLock !== null) {
+      requestWakeLock();
     }
+  });
 
-    // Function to request the wake lock to prevent screen from turning off
-    async function requestWakeLock() {
-      try {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.log('Wake Lock is active');
-      } catch (err) {
-        console.error(`${err.name}, ${err.message}`);
-      }
-    }
+  // Update the time every second
+  setInterval(updateTime, 1000);
 
-    // Automatically request wake lock on page load to keep the screen on
-    document.addEventListener('visibilitychange', () => {
-      if (wakeLock !== null && document.visibilityState === 'visible') {
-        requestWakeLock();
-      }
-    });
+  // Add event listener to the button for full-screen toggle
+  fullscreenBtn.addEventListener('click', toggleFullscreen);
 
-    // Update the time every second
-    setInterval(updateTime, 1000);
+  // Request wake lock when the page loads
+  requestWakeLock();
 
-    // Add event listener to the button for full-screen toggle
-    fullscreenBtn.addEventListener('click', toggleFullscreen);
-
-    // Request wake lock when the page loads
-    requestWakeLock();
-
-    // Initialize the time when the page loads
-    updateTime();
-  </script>
+  // Initialize the time when the page loads
+  updateTime();
+</script>
 </body>
 </html>
