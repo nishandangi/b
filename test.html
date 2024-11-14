@@ -196,13 +196,11 @@ font-family: 'Merriweather', serif;
   </div>
 
   <script>
-// Function to start the polling for new messages every 10 seconds
-function startMessageChecker() {
-  // Set an interval to call fetchAndCheckMessages every 10 seconds (10000 milliseconds)
-  setInterval(fetchAndCheckMessages, 1000); // 10 seconds interval
-}
 
-// Function to fetch messages and check if "kiss" is mentioned
+
+// Store already processed messages to prevent duplicate triggering
+let processedMessages = new Set();
+
 async function fetchAndCheckMessages() {
   try {
     // Fetch the latest messages directly from the server
@@ -211,8 +209,9 @@ async function fetchAndCheckMessages() {
 
     // Check each message for the word "kiss"
     messages.forEach(message => {
-      if (message.text.includes("kiss")) {
+      if (message.text.includes("kiss") && !processedMessages.has(message.date)) {
         playSound(); // Play sound if "kiss" is found
+        processedMessages.add(message.date); // Add the message to the processed set
       }
     });
   } catch (error) {
@@ -220,22 +219,23 @@ async function fetchAndCheckMessages() {
   }
 }
 
-// Function to play sound when "kiss" is detected
 function playSound() {
-  const sound = new Audio('https://nishandangi.github.io/a/confirmation.wav');
+  const sound = new Audio('https://nishandangi.github.io/b/kiss.mp3');
   sound.play();
 }
 
 // Start polling as soon as the page loads
 startMessageChecker();
 
+// Function to start the polling for new messages every 10 seconds
+function startMessageChecker() {
+  // Set an interval to call fetchAndCheckMessages every 10 seconds (10000 milliseconds)
+  setInterval(fetchAndCheckMessages, 1000); // 10 seconds interval
+}
 
 
 
-
-
-
-  function playk() {
+  function play() {
       const Sound = new Audio('https://nishandangi.github.io/a/confirmation.wav'); 
       Sound.play();
     }
