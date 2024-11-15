@@ -201,7 +201,6 @@ font-family: 'Merriweather', serif;
 
   <script>
 
-
 // Store already processed messages to prevent duplicate triggering
 let processedMessages = new Set();
 
@@ -211,11 +210,16 @@ async function fetchAndCheckMessages() {
     const response = await fetch('https://script.google.com/macros/s/AKfycbxnjJn8OursihvYZNl4ljKu75Zr8edu93pKcfwNtz2J0BAk35JSrfz8hmLoa0fNEMhBVA/exec');
     const messages = await response.json();
 
-    // Check each message for the word "kiss"
+    // Check each message for specific actions
     messages.forEach(message => {
-      if (message.text.includes("Sending Kiss") && !processedMessages.has(message.date)) {
-        playSound(); // Play sound if "kiss" is found
-        processedMessages.add(message.date); // Add the message to the processed set
+      if (!processedMessages.has(message.date)) {
+        if (message.text.includes("Sending Kiss")) {
+          playSound(); // Play sound if "Sending Kiss" is found
+          processedMessages.add(message.date); // Add the message to the processed set
+        } else if (message.text.includes("Vibrate")) {
+          runVibrate(); // Run vibrate if "Vibrate" is found
+          processedMessages.add(message.date); // Add the message to the processed set
+        }
       }
     });
   } catch (error) {
@@ -228,6 +232,12 @@ function playSound() {
   sound.play();
 }
 
+function runVibrate() {
+  if (navigator.vibrate) {
+    navigator.vibrate(200); // Vibrate for 200ms if the device supports it
+  }
+}
+
 // Start polling as soon as the page loads
 startMessageChecker();
 
@@ -237,6 +247,10 @@ function startMessageChecker() {
 }
 
 
+
+
+
+//next part
 
   function play() {
       const Sound = new Audio('https://nishandangi.github.io/a/confirmation.wav'); 
