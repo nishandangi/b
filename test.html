@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,15 +175,16 @@ font-family: 'Merriweather', serif;
   </div>
 <div id="offline"><h1>Ohw🙄; You are Offline!!</h1><p>When you got online, Page reloads automatically</p></div>
 
-<div id="mainBody" style="visibility: hidden;">
+<div id="mainBody" style="visibility: hidden; ">
 <div id="countdownTimer" style="position: fixed; top: 10px; right: 10px; font-size: 16px; font-weight: bold; background-color: rgba(0, 0, 0, 0.7); color: white; padding: 5px 10px; border-radius: 5px; display: none;"></div>
 <div id="menu"> 
 
 <button onclick="kissing();"style="width:40%;">😘</button>
 <button onclick="window.location.reload();" style="width:40%;">Refresh</button>
 <button onclick="Delete();"style="width:40%;">Delete</button>
-<button  onclick="document.getElementById('menu').style.visibility = 'hidden';" style="width:40%;">Cancel</button>
+<button  onclick="Vibrate();"style="width:40%;">Vibrate</button>
 <button  onclick="document.documentElement.requestFullscreen();"style="width:40%;">Full Screen</button>
+<button  onclick="document.getElementById('menu').style.visibility = 'hidden';" style="width:40%;">Cancel</button>
 <button id="logoutButton"style="width:80%; ">Logout</button>
 
 </div>
@@ -195,7 +197,7 @@ font-family: 'Merriweather', serif;
       <img id="profileImage" src=""  onclick="menu();">
       <div id="usernameInput" placeholder="Name" value="not" style="display:none;"></div>
       <textarea id="messageInput" placeholder="Message"></textarea>
-      <button id="sendMessageButton">Send</button>
+      <button id="sendMessageButton"style="font-size: 32px;padding:5px;border-radius:10px;">➤</button>
     </div>
   </div>
 
@@ -216,7 +218,7 @@ async function fetchAndCheckMessages() {
         if (message.text.includes("Sending Kiss")) {
           playSound(); // Play sound if "Sending Kiss" is found
           processedMessages.add(message.date); // Add the message to the processed set
-        } else if (message.text.includes("Vibrate")) {
+        } else if (message.text.includes("Vibrated")) {
           runVibrate(); // Run vibrate if "Vibrate" is found
           processedMessages.add(message.date); // Add the message to the processed set
         }
@@ -234,7 +236,7 @@ function playSound() {
 
 function runVibrate() {
   if (navigator.vibrate) {
-    navigator.vibrate(200); // Vibrate for 200ms if the device supports it
+    navigator.vibrate(400); // Vibrate for 400ms if the device supports it
   }
 }
 
@@ -272,7 +274,10 @@ function startMessageChecker() {
 document.getElementById('messageInput').value = 'Sending Kiss';
 document.getElementById('menu').style.visibility = 'hidden';
 sendMessage();}
-  
+  function Vibrate() {
+document.getElementById('messageInput').value = 'Vibrated';
+document.getElementById('menu').style.visibility = 'hidden';
+sendMessage();} 
   
   
 //delete button jugad(handled from server)
@@ -532,6 +537,7 @@ async function sendMessage() {
   }
   // Re-enable the send button after saving the message
   sendButton.disabled = false;
+	 messageInput.focus();
 }
 
  messageInput.addEventListener('keydown', (event) => {
