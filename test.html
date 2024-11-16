@@ -527,7 +527,7 @@ async function sendMessage() {
 
   // Temporarily prevent input from losing focus
   messageInput.readOnly = true; // Prevent blur events caused by DOM updates
-  messageInput.value = '';      // Clear the input field
+      // Clear the input field
   sendButton.disabled = true;
 
   // Display the message on the page immediately
@@ -543,7 +543,8 @@ async function sendMessage() {
     sendButton.disabled = false;
     // Restore input field usability without losing focus
     messageInput.readOnly = false;
-    messageInput.focus(); // Ensure keyboard remains open
+    messageInput.focus();
+ messageInput.value = ''; 	// Ensure keyboard remains open
   }
 }
 
