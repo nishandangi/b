@@ -197,7 +197,7 @@ font-family: 'Merriweather', serif;
       <img id="profileImage" src=""  onclick="menu();">
       <div id="usernameInput" placeholder="Name" value="not" style="display:none;"></div>
       <textarea id="messageInput" placeholder="Message"></textarea>
-      <button id="sendMessageButton"style="font-size: 32px;padding:5px;border-radius:10px;">➤</button>
+      <button id="sendMessageButton"style="font-size: 28px;padding:5px;border-radius:10px;">➤</button>
     </div>
   </div>
 
@@ -518,26 +518,33 @@ async function sendMessage() {
     console.error("Input elements or send button not found!");
     return; // Exit if elements are not found
   }
-  //play();
+
   const username = usernameInput.value.trim();
   const text = messageInput.value.trim();
 
   // Exit if either username or text is empty
   if (!username || !text) return;
 
-  messageInput.value = '';
+  // Temporarily prevent input from losing focus
+  messageInput.readOnly = true; // Prevent blur events caused by DOM updates
+  messageInput.value = '';      // Clear the input field
   sendButton.disabled = true;
+
   // Display the message on the page immediately
   displayMessage({ username, text });
- // Attempt to save the message
+
+  // Attempt to save the message
   try {
     await saveMessage({ username, text });
   } catch (error) {
     console.error("Error saving message:", error);
+  } finally {
+    // Re-enable the send button
+    sendButton.disabled = false;
+    // Restore input field usability without losing focus
+    messageInput.readOnly = false;
+    messageInput.focus(); // Ensure keyboard remains open
   }
-  // Re-enable the send button after saving the message
-  sendButton.disabled = false;
-	 messageInput.focus();
 }
 
  messageInput.addEventListener('keydown', (event) => {
