@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Meanings</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Meanings</title>
 <style>
- * { font-size: 12px;margin: 0;padding: 0;font-family: 'Space Mono', monospace;-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-body { background-color: #808080; zoom: 1.5; transform-origin: top left; width: 100vw; overflow-wrap: break-word;}
+ * { font-size: 12px;margin: 0;padding: 0;font-family: 'Space Mono', monospace;user-select: none;}
+body{  background-color: #808080;zoom:1.5;transform-origin: top left; overflow-wrap: break-word;}
 table {width:100%;overflow-wrap: break-word;border-collapse: collapse;Margin: 0Px; }
-td, th {border: 1px solid #fff;padding: 1px;width: 1000px;     }
+td, th {border: 1px solid #fff;padding: 1px;width: 1000px;     ;}
 button {border-radius: 4px;  background-color: #3498db;  color: #fff;   padding: 20px 20px;  Margin: 0px 0px 10Px 0px;border: none; 
  box-shadow: 5px 5px 7px 5px rgba(0, 0, 0, 0.6);  cursor: pointer;    }
 .dropdown{box-shadow: 2px 2px 2px  rgba(256, 256, 256, 0.6); border-radius: 10px; }
@@ -19,90 +19,51 @@ tr td:nth-child(2)  {background-color: #eee; color:#000; padding: 1px 1Px 1px 0p
 #ndct{position:fixed;bottom:50%;left:0;padding:10px;border-radius:10px;cursor:pointer;background-color: #000;color:#fff;font-weight:bold;}
 @media screen and (max-width: 1000px) { #mbla,#mblb,#mblc { display: none; }tr td:first-child {max-width:85px; }}
 #scrollToTopButton {position: fixed;right: 5px;bottom: 40%;display: none; color: #000;cursor: pointer;z-index: 1000; font-size: 38px;}
+
 </style>
 </head><body>
-<div id="scrollToTopButton" onclick="scrollToTop()">↑</div>
+<div id="buttons" >
+    <div class="dropdown" id="mblBc">Basic
+        <div class="dropdown-content">
+            <button class="B1">Basic 1(283)</button><button class="B2">Basic 2(283)</button><button class="B3">Basic 3</button><button class="B4">Basic 4</button><button class="B5">Basic 5</button><button class="B6">Basic 6</button><button class="B7">Basic 7</button><button class="B8">Basic 8</button><button class="B9">Basic 9</button><button class="B10">Basic 10</button><button class="B11">Basic 11</button><button class="B12">Basic 12</button><button class="B13">Basic 13</button><button class="B14">Basic 14</button><button class="B15">Basic 15</button><button class="B16">Basic 16</button><button class="B17">Basic 17</button><button class="B18">Basic 18</button><button class="B19">Basic 19</button><button class="B20">Basic 20</button>
+        </div>
+    </div>
+    
+    <div class="dropdown" id="mblBb">Verb 
+        <div class="dropdown-content">
+            <button class="B21">Verbs1 (331)</button><button class="B22">Verbs2 (331)</button><button class="B23">verbs3 (331)</button><button class="B24">Categorized (460)</button><button id="chapterWiseBtn" onclick="showChapters();">Chapter Wise</button>
+        </div>
+    </div>
 
-<div id="buttons"style="display:;">
-<div class="dropdown"id ="mblBc">Basic
- <div class="dropdown-content">
-            <button class="B1">Basic 1(283)</button>
-            <button class="B2">Basic 2(283)</button>
-            <button class="B3">Basic 3</button>
-            <button class="B4">Basic 4</button>
-            <button class="B5">Basic 5</button>
-            <button class="B6">Basic 6</button>
-            <button class="B7">Basic 7</button>
-			<button class="B8">Basic 8</button>
-            <button class="B9">Basic 9</button>
-            <button class="B10">Basic 10</button>
-            <button class="B11">Basic 11</button>
-            <button class="B12">Basic 12</button>
-            <button class="B13">Basic 13</button>
-            <button class="B14">Basic 14</button>
-            <button class="B15">Basic 15</button>
-            <button class="B16">Basic 16</button>
-			<button class="B17">Basic 17</button>
-            <button class="B18">Basic 18</button>
-            <button class="B19">Basic 19</button>
-            <button class="B20">Basic 20</button>		 
-</div></div>
+    <div class="dropdown" id="mblBa">Book
+        <div class="dropdown-content">
+            <button class="I1">page 1 (368)</button><button class="I2">page 2</button><button class="I3">page 3</button><button class="I4">page 4</button><button class="I5">page 5</button><button class="I6">page 6 (368)</button><button class="I7">page 7</button><button class="I8">page 8</button><button class="I9">page 9</button><button class="I10">page 10</button><button class="I11">page 11 (368)</button>
+        </div>
+    </div>
 
-<div class="dropdown" id ="mblBb">Verb 
-<div class="dropdown-content">
-          <button class="B21">Verbs1 (331)</button>
-            <button class="B22">Verbs2 (331)</button>
-			<button class="B23">verbs3 (331)</button>
- <button class="B24">Catagorized(460)</button>
-<button id="chapterWiseBtn" onclick="showChapters();">Chapter Wise</button>
-	
-</div></div>
-<div class="dropdown"id ="mblBa">Book
-<div class="dropdown-content">
-            <button class="I1">page 1 (368)</button>
-            <button class="I2">page 2</button>
-            <button class="I3">page3</button>
-            <button class="I4">page 4</button>
-            <button class="I5">page 5</button>
-            <button class="I6">page 6(368)</button>
-            <button class="I7">page 7</button>
-            <button class="I8">page 8</button>
-            <button class="I9">page 9</button>
-			<button class="I10">page 10</button>
-            <button class="I11">page 11(368)</button>
-</div></div>
+    <div class="dropdown" id="mbla">ch(1-20)
+        <div class="dropdown-content">
+            <button id="Refresh" onclick="window.location.reload();">Refresh</button><button class="ch5">Chapter 5</button><button class="ch6">Chapter 6</button><button class="ch7">Chapter 7</button><button class="ch8">Chapter 8</button><button class="ch9">Chapter 9</button><button class="ch10">Chapter 10</button><button class="ch11">Chapter 11</button><button class="ch12">Chapter 12</button><button class="ch13">Chapter 13</button><button class="ch14">Chapter 14</button><button class="ch15">Chapter 15</button><button class="ch16">Chapter 16</button><button class="ch17">Chapter 17</button><button class="ch18">Chapter 18</button><button class="ch19">Chapter 19</button><button class="ch20">Chapter 20</button>
+        </div>
+    </div>
 
+    <div class="dropdown" id="mblb">ch(21-40)
+        <div class="dropdown-content">
+            <button class="ch21">Chapter 21</button><button class="ch22">Chapter 22</button><button class="ch23">Chapter 23</button><button class="ch24">Chapter 24</button><button class="ch25">Chapter 25</button><button class="ch26">Chapter 26</button><button class="ch27">Chapter 27</button><button class="ch28">Chapter 28</button><button class="ch29">Chapter 29</button><button class="ch30">Chapter 30</button><button class="ch31">Chapter 31</button><button class="ch32">Chapter 32</button><button class="ch33">Chapter 33</button><button class="ch34">Chapter 34</button><button class="ch35">Chapter 35</button><button class="ch36">Chapter 36</button><button class="ch37">Chapter 37</button><button class="ch38">Chapter 38</button><button class="ch39">Chapter 39</button><button class="ch40">Chapter 40</button>
+        </div>
+    </div>
 
-
-<div class="dropdown" id ="mbla">ch(1-20)
- <div class="dropdown-content">
-<button onclick="window.location.reload();">Refresh</button>
-<button class="ch5">Chapter 5</button> <button class="ch6">Chapter 6</button> <button class="ch7">Chapter 7</button>
- <button class="ch8">Chapter 8</button> <button class="ch9">Chapter 9</button> <button class="ch10">Chapter 10</button> 
- <button class="ch11">Chapter 11</button> <button class="ch12">Chapter 12</button> <button class="ch13">Chapter 13</button> 
- <button class="ch14">Chapter 14</button> <button class="ch15">Chapter 15</button> <button class="ch16">Chapter 16</button>
- <button class="ch17">Chapter 17</button> <button class="ch18">Chapter 18</button> <button class="ch19">Chapter 19</button> 
- <button class="ch20">Chapter 20</button>
- 
-</div></div>
-<div class="dropdown" id ="mblb">ch(21-40)
-<div class="dropdown-content">
-    <button class="ch21">Chapter 21</button> <button class="ch22">Chapter 22</button> <button class="ch23">Chapter 23</button> <button class="ch24">Chapter 24</button> <button class="ch25">Chapter 25</button> <button class="ch26">Chapter 26</button> <button class="ch27">Chapter 27</button> <button class="ch28">Chapter 28</button> <button class="ch29">Chapter 29</button> <button class="ch30">Chapter 30</button> <button class="ch31">Chapter 31</button> <button class="ch32">Chapter 32</button> <button class="ch33">Chapter 33</button> <button class="ch34">Chapter 34</button> <button class="ch35">Chapter 35</button> <button class="ch36">Chapter 36</button> <button class="ch37">Chapter 37</button> <button class="ch38">Chapter 38</button> <button class="ch39">Chapter 39</button> <button class="ch40">Chapter 40</button>
-
-</div></div>
-<div class="dropdown" id ="mblc">Ch(41-60)
-<div class="dropdown-content">
- <button class="ch41">Chapter 41</button> <button class="ch42">Chapter 42</button> <button class="ch43">Chapter 43</button> <button class="ch44">Chapter 44</button> <button class="ch45">Chapter 45</button> <button class="ch46">Chapter 46</button> <button class="ch47">Chapter 47</button> <button class="ch48">Chapter 48</button> <button class="ch49">Chapter 49</button> <button class="ch50">Chapter 50</button> <button class="ch51">Chapter 51</button> <button class="ch52">Chapter 52</button> <button class="ch53">Chapter 53</button> <button class="ch54">Chapter 54</button> <button class="ch55">Chapter 55</button> <button class="ch56">Chapter 56</button> <button class="ch57">Chapter 57</button> <button class="ch58">Chapter 58</button> <button class="ch59">Chapter 59</button> <button class="ch60">Chapter 60</button>
- 
- 
-</div></div>
-
+    <div class="dropdown" id="mblc">Ch(41-60)
+        <div class="dropdown-content">
+            <button class="ch41">Chapter 41</button><button class="ch42">Chapter 42</button><button class="ch43">Chapter 43</button><button class="ch44">Chapter 44</button><button class="ch45">Chapter 45</button><button class="ch46">Chapter 46</button><button class="ch47">Chapter 47</button><button class="ch48">Chapter 48</button><button class="ch49">Chapter 49</button><button class="ch50">Chapter 50</button><button class="ch51">Chapter 51</button><button class="ch52">Chapter 52</button><button class="ch53">Chapter 53</button><button class="ch54">Chapter 54</button><button class="ch55">Chapter 55</button><button class="ch56">Chapter 56</button><button class="ch57">Chapter 57</button><button class="ch58">Chapter 58</button><button class="ch59">Chapter 59</button><button class="ch60">Chapter 60</button>
+        </div>
+    </div>
 </div>
 
 
 
 <!Basic words>
-<table class="B1" style="display:block;">
+<table class="B1" style="display:none;">
 <tr><td>것</td><td>कुरा ( A thing or an object )</td></tr><tr><td>하다</td><td>गर्नु ( To do )</td></tr><tr><td>있다</td><td>त्यहाँ छ ( To be )</td></tr><tr><td>수</td><td>संख्या ( way, method, Number )</td></tr><tr><td>나</td><td>म ( I )</td></tr><tr><td>없다</td><td>नहुनु ( Do not exist, absent )</td></tr><tr><td>않다</td><td>होइन ( To not do )</td></tr><tr><td>사람</td><td>व्यक्ति ( Person )</td></tr><tr><td>우리</td><td>हामी ( we, our )</td></tr><tr><td>그</td><td>त्यो ( He, That )</td></tr><tr><td>아니다</td><td>छैन ( To not be )</td></tr><tr><td>보다</td><td>हेर्नुहोस् ( To try )</td></tr><tr><td>거</td><td>कुरा ( thing )</td></tr><tr><td>같다</td><td>समान ( To be similar )</td></tr><tr><td>주다</td><td>दिनु ( To give, to do for a person )</td></tr><tr><td>대하다</td><td>उपचार ( Face, confront )</td></tr><tr><td>가다</td><td>जानुहोस् ( To go )</td></tr><tr><td>년</td><td>वर्ष ( Year )</td></tr><tr><td>한</td><td>एउटा ( One, a single )</td></tr><tr><td>말</td><td>शब्द ( words,speaking )</td></tr><tr><td>일</td><td>दिन ( Work )</td></tr><tr><td>이</td><td>यो ( A person, This )</td></tr><tr><td>말하다</td><td>भन्नुहोस् ( Speak )</td></tr><tr><td>위하다</td><td>को लागी ( To do for the sake of )</td></tr><tr><td>그러나</td><td>यद्यपि ( However or but still )</td></tr><tr><td>오다</td><td>आउनुहोस् ( To come )</td></tr><tr><td>알다</td><td>चिन्छु ( To know )</td></tr><tr><td>씨</td><td>बीज ( ~ Mr. )</td></tr><tr><td>그렇다</td><td>हो ( That is right or yes. )</td></tr><tr><td>크다</td><td>ठूलो ( To be big, large )</td></tr><tr><td>사회</td><td>समाज ( culture,society )</td></tr><tr><td>많다</td><td>धेरै ( many, much )</td></tr><tr><td>안</td><td>होइन ( ~ not ~ + VERB )</td></tr><tr><td>좋다</td><td>शुभ रात्री ( To be good )</td></tr><tr><td>더</td><td>थप ( More )</td></tr><tr><td>받다</td><td>प्राप्त गर्नुहोस् ( Receive )</td></tr><tr><td>그것</td><td>त्यो ( That thing )</td></tr><tr><td>집</td><td>घर ( House )</td></tr><tr><td>나오다</td><td>बाहिर आउ ( Come out )</td></tr><tr><td>그리고</td><td>र ( And or and then )</td></tr><tr><td>문제</td><td>समस्या ( question,problem )</td></tr><tr><td>그런</td><td>त्यो ( Such a )</td></tr><tr><td>살다</td><td>लाइभ ( To live )</td></tr><tr><td>저</td><td>म ( That )</td></tr><tr><td>못하다</td><td>गर्न सकिन्न ( Be impossible )</td></tr><tr><td>생각하다</td><td>सोच्नुहोस् ( To think )</td></tr><tr><td>모르다</td><td>थाहा छैन ( To not know )</td></tr><tr><td>속</td><td>भित्र ( The inside )</td></tr><tr><td>만들다</td><td>बनाउनु ( To make )</td></tr><tr><td>데</td><td>ठाउँ ( Place, point, instance )</td></tr><tr><td>앞</td><td>अगाडि ( In front of, before )</td></tr><tr><td>경우</td><td>मामला ( A case or an instance )</td></tr><tr><td>중</td><td>मध्य ( The center, the middle )</td></tr><tr><td>어떤</td><td>जुन ( What kind of, what sort of )</td></tr><tr><td>잘</td><td>राम्रो ( Well )</td></tr><tr><td>그녀</td><td>उनी ( She )</td></tr><tr><td>먹다</td><td>खानु ( Eat, chow down on )</td></tr><tr><td>자신</td><td>म आफै ( one’s own self, one\’s own body )</td></tr><tr><td>문화</td><td>संस्कृति ( culture )</td></tr><tr><td>원</td><td>एउटा ( A unit of south korean money, KRW )</td></tr><tr><td>생각</td><td>विचार ( Thought )</td></tr><tr><td>어떻다</td><td>कसरी ( how,what.. do you think of )</td></tr><tr><td>명</td><td>मान्छे को संख्या ( Person counter )</td></tr><tr><td>통하다</td><td>पास ( Run, lead; flow; go through )</td></tr><tr><td>그러다</td><td>त्यसपछि ( and so, and then, well )</td></tr><tr><td>소리</td><td>आवाज ( A sound,noise )</td></tr><tr><td>다시</td><td>फेरि ( Again )</td></tr><tr><td>다른</td><td>फरक ( Different )</td></tr><tr><td>이런</td><td>यो ( Such, like this )</td></tr><tr><td>여자</td><td>महिला ( woman,female )</td></tr><tr><td>개</td><td>कुकुर ( Unit or piece )</td></tr><tr><td>정도</td><td>डिग्री ( grade,degree )</td></tr><tr><td>다</td><td>सबै ( All, everything )</td></tr><tr><td>좀</td><td>थोरै ( A little )</td></tr><tr><td>싶다</td><td>चाहन्छ ( want,hope )</td></tr><tr><td>보이다</td><td>देखाउनु ( see,catch sight of )</td></tr><tr><td>가지다</td><td>छ ( To have or take or hold )</td></tr><tr><td>함께</td><td>सँगै ( Together, with )</td></tr><tr><td>아이</td><td>बच्चा ( Child )</td></tr><tr><td>지나다</td><td>पास ( pass,elapse,go on )</td></tr><tr><td>많이</td><td>धेरै ( A lot )</td></tr><tr><td>시간</td><td>घण्टा ( Time )</td></tr><tr><td>너</td><td>तिमी ( You )</td></tr><tr><td>인간</td><td>मानव ( A person, a human being )</td></tr><tr><td>사실</td><td>वास्तवमा ( The truth, a fact )</td></tr><tr><td>나다</td><td>बढ्नु ( To be born )</td></tr><tr><td>이렇다</td><td>यो यस्तो छ ( Like this )</td></tr><tr><td>어머니</td><td>आमा ( Mom )</td></tr><tr><td>눈</td><td>आँखा ( Eyes )</td></tr><tr><td>뭐</td><td>के ( Huh? (2) something )</td></tr><tr><td>점</td><td>बिन्दु ( Store )</td></tr><tr><td>의하다</td><td>कारण हो ( To be due to, owing to )</td></tr><tr><td>시대</td><td>युग ( An age,period )</td></tr><tr><td>다음</td><td>अर्को ( Next )</td></tr><tr><td>이러하다</td><td>यो यस्तो छ ( Be this way, be like follows )</td></tr><tr><td>누구</td><td>WHO ( Who )</td></tr><tr><td>곳</td><td>ठाउँ ( Place )</td></tr><tr><td>여러</td><td>धेरै ( many,various )</td></tr><tr><td>하나</td><td>एउटा ( One )</td></tr><tr><td>세계</td><td>संसार ( World )</td></tr><tr><td>버리다</td><td>फाल्नु ( (throw )</td></tr><tr><td>위</td><td>पेट ( The upper part, above )</td></tr><tr><td>운동</td><td>कसरत ( Motion, movement )</td></tr><tr><td>퍼센트</td><td>प्रतिशत ( Percent )</td></tr><tr><td>학교</td><td>विद्यालय ( School )</td></tr><tr><td>자기</td><td>स्व ( Oneself, number one, numerouno, self )</td></tr><tr><td>가장</td><td>धेरैजसो ( Most )</td></tr><tr><td>대통령</td><td>राष्ट्रपति ( The president )</td></tr><tr><td>가지</td><td>अण्डाको बोट ( One of the kind or a sort )</td></tr><tr><td>시작하다</td><td>सुरु ( To start,begin )</td></tr><tr><td>바로</td><td>जति सक्दो चाँडो ( Right, correctly )</td></tr><tr><td>어느</td><td>कुनै पनि ( Some, a certain )</td></tr><tr><td>그래서</td><td>त्यसैले ( And so accordingly )</td></tr><tr><td>무엇</td><td>के ( That thing,whatever )</td></tr><tr><td>정부</td><td>सरकार ( Government )</td></tr><tr><td>모든</td><td>हरेक ( Every one )</td></tr><tr><td>번</td><td>th ( Number, how many times )</td></tr><tr><td>그거</td><td>त्यो ( That thing )</td></tr><tr><td>돈</td><td>पैसा ( Money )</td></tr><tr><td>국가</td><td>राष्ट्र ( A state or a nation )</td></tr><tr><td>그런데</td><td>यद्यपि ( But or however )</td></tr><tr><td>날</td><td>म ( Day )</td></tr><tr><td>여기</td><td>यहाँ ( A hobby )</td></tr><tr><td>모두</td><td>हरेक ( Everybody )</td></tr><tr><td>여성</td><td>महिला ( Female )</td></tr><tr><td>친구</td><td>साथी ( A friend )</td></tr><tr><td>마음</td><td>दिमाग ( Heart )</td></tr><tr><td>후</td><td>पछि ( After )</td></tr><tr><td>놓다</td><td>राख्नु ( Put, place )</td></tr><tr><td>관계</td><td>सम्बन्ध ( Connection or relation )</td></tr><tr><td>아버지</td><td>बुबा ( Father )</td></tr><tr><td>남자</td><td>मान्छे ( Boy )</td></tr><tr><td>어디</td><td>कहाँ ( Where? )</td></tr><tr><td>몸</td><td>जीउ ( body,physique )</td></tr><tr><td>얼굴</td><td>अनुहार ( Face )</td></tr><tr><td>왜</td><td>किन ( Why? )</td></tr><tr><td>나타나다</td><td>देखा पर्छन् ( Come out, appear )</td></tr><tr><td>지역</td><td>क्षेत्र ( An area, region )</td></tr><tr><td>다르다</td><td>फरक ( Be different )</td></tr><tr><td>모습</td><td>फिगर ( shape,body )</td></tr><tr><td>물</td><td>पानी ( Water )</td></tr><tr><td>만나다</td><td>भेट्न ( Meet )</td></tr><tr><td>내다</td><td>तिर्नुहोस् ( produce something )</td></tr><tr><td>쓰다</td><td>लेख्नुहोस् ( To write )</td></tr><tr><td>이것</td><td>यो ( This thing )</td></tr><tr><td>없이</td><td>बिना ( Without )</td></tr><tr><td>이번</td><td>यो समय ( This time )</td></tr><tr><td>길</td><td>सडक ( Road )</td></tr><tr><td>생활</td><td>जीवन ( lifestyle,livelihood )</td></tr><tr><td>뿐</td><td>मात्र ( only,alone,merely )</td></tr><tr><td>사이</td><td>बीचमा (  between )</td></tr><tr><td>방법</td><td>विधि ( Way, method )</td></tr><tr><td>새롭다</td><td>नयाँ ( To be new,novel )</td></tr><tr><td>앉다</td><td>बस्नुहोस् ( To sit down )</td></tr><tr><td>처음</td><td>पहिलो ( First )</td></tr><tr><td>손</td><td>हात ( The hand )</td></tr><tr><td>몇</td><td>केही ( A few )</td></tr><tr><td>그때</td><td>त्यो समयमा ( Then or at that time )</td></tr><tr><td>과정</td><td>प्रक्रिया ( Process or course )</td></tr><tr><td>삶</td><td>जीवन ( Life )</td></tr><tr><td>갖다</td><td>छ ( To hold )</td></tr><tr><td>찾다</td><td>फेला पार्नुहोस् ( seek,look for )</td></tr><tr><td>특히</td><td>विशेष गरी ( Especially )</td></tr><tr><td>시</td><td>शहर ( Time )</td></tr><tr><td>이상</td><td>थप ( More than, above )</td></tr><tr><td>지금</td><td>अहिले ( Now )</td></tr><tr><td>나가다</td><td>बाहिर जाउ ( To go out )</td></tr><tr><td>이야기</td><td>कथा ( Conversation, talk )</td></tr><tr><td>교육</td><td>शिक्षा ( Education )</td></tr><tr><td>사다</td><td>किन्नुहोस् ( To buy, purchase )</td></tr><tr><td>경제</td><td>अर्थव्यवस्था ( Economy )</td></tr><tr><td>아직</td><td>अझै ( Still )</td></tr><tr><td>잡다</td><td>समात्नुहोस् ( seize,catch )</td></tr><tr><td>같이</td><td>सँगै ( Together )</td></tr><tr><td>선생님</td><td>शिक्षक ( Teacher )</td></tr><tr><td>예술</td><td>कला ( Art, an art )</td></tr><tr><td>서다</td><td>खडा ( To stand )</td></tr><tr><td>못</td><td>पोखरी ( Cannot )</td></tr><tr><td>역사</td><td>इतिहास ( History )</td></tr><tr><td>읽다</td><td>पढ्नुहोस् ( To read )</td></tr><tr><td>결과</td><td>परिणाम ( Result )</td></tr><tr><td>내용</td><td>विस्तार ( Contents )</td></tr><tr><td>물론</td><td>अवश्य पनि ( Of course )</td></tr><tr><td>책</td><td>पुस्तक ( A book )</td></tr><tr><td>일어나다</td><td>उठ्नुहोस् ( To rise, get up )</td></tr><tr><td>당신</td><td>तिमी ( Formal you )</td></tr><tr><td>시장</td><td>बजार ( market,fair )</td></tr><tr><td>넣다</td><td>घुसाउनुहोस् ( Put in, set in )</td></tr><tr><td>중요하다</td><td>यो महत्वपूर्ण छ ( To be important,weighty )</td></tr><tr><td>무슨</td><td>के ( What, what kind of )</td></tr><tr><td>느끼다</td><td>महसुस ( To feel )</td></tr><tr><td>어렵다</td><td>गाह्रो ( To be hard, difficult )</td></tr><tr><td>힘</td><td>शक्ति ( Power )</td></tr><tr><td>너무</td><td>पनि ( Too much )</td></tr><tr><td>나라</td><td>देश ( A country )</td></tr><tr><td>부르다</td><td>कल गर्नुहोस् ( To call )</td></tr><tr><td>의미</td><td>अर्थ ( A meaning, a sense )</td></tr><tr><td>자리</td><td>सीट ( seat,spot )</td></tr><tr><td>밝히다</td><td>स्पष्ट पार्नुहोस् ( To light up )</td></tr><tr><td>죽다</td><td>मर्नु ( die,pass away )</td></tr><tr><td>이미</td><td>पहिले नै ( Already )</td></tr><tr><td>쪽</td><td>पक्ष ( Way, direction )</td></tr><tr><td>정치</td><td>राजनीति ( Politics )</td></tr><tr><td>국민</td><td>राष्ट्र ( The people or a nationality )</td></tr><tr><td>생명</td><td>जीवन ( Life )</td></tr><tr><td>얘기</td><td>कुरा ( Story )</td></tr><tr><td>학생</td><td>विद्यार्थी ( Student )</td></tr><tr><td>연구</td><td>अनुसन्धान ( Research )</td></tr><tr><td>엄마</td><td>आमा ( Mamma )</td></tr><tr><td>이름</td><td>नाम ( Name )</td></tr><tr><td>내리다</td><td>बाहिर जानुहोस् ( Descend )</td></tr><tr><td>사건</td><td>घटना ( An event,incident )</td></tr><tr><td>및</td><td>र ( As well as )</td></tr><tr><td>쉽다</td><td>सजिलो ( To be easy )</td></tr><tr><td>짓다</td><td>निर्माण ( To make, build ; to form a line (a group) )</td></tr><tr><td>이유</td><td>कारण ( Reason )</td></tr><tr><td>필요하다</td><td>आवश्यकता ( To need )</td></tr><tr><td>글</td><td>लेखन ( words, a verse )</td></tr><tr><td>생기다</td><td>हुनु ( arise,occur,happen )</td></tr><tr><td>사용하다</td><td>प्रयोग गर्नुहोस् ( To use )</td></tr><tr><td>남편</td><td>श्रीमान् ( Husband )</td></tr><tr><td>밖</td><td>बाहिर ( The outside )</td></tr><tr><td>세상</td><td>संसार ( The world,society )</td></tr><tr><td>작다</td><td>सानो ( Small )</td></tr><tr><td>타다</td><td>सवारी ( Ride (bus) )</td></tr><tr><td>대학</td><td>विश्वविद्यालय ( University )</td></tr><tr><td>작품</td><td>काम ( A work of art )</td></tr><tr><td>상황</td><td>स्थिति ( State of things )</td></tr><tr><td>가운데</td><td>मध्य ( In the middle )</td></tr><tr><td>보내다</td><td>जान दिनुहोस् ( Send )</td></tr><tr><td>즉</td><td>अर्को शब्दमा ( namely,that is to say )</td></tr><tr><td>상태</td><td>स्थिति ( condition,state )</td></tr><tr><td>이후</td><td>पछि ( After that )</td></tr><tr><td>당시</td><td>त्यो समयमा ( At that time )</td></tr><tr><td>문학</td><td>साहित्य ( Literature )</td></tr><tr><td>더욱</td><td>थप ( More and more )</td></tr><tr><td>아주</td><td>धेरै ( Extremely )</td></tr><tr><td>지방</td><td>प्रान्त ( A locality, district )</td></tr><tr><td>밤</td><td>रात ( Night )</td></tr><tr><td>높다</td><td>उच्च ( High )</td></tr><tr><td>최근</td><td>भर्खरको ( Recently )</td></tr><tr><td>채</td><td>छडी ( As it is, no change )</td></tr><tr><td>현실</td><td>वास्तविकता ( Actuality, reality )</td></tr><tr><td>환경</td><td>वातावरण ( Environment )</td></tr><tr><td>컴퓨터</td><td>कम्प्युटर ( Computer )</td></tr><tr><td>먼저</td><td>पहिलो ( First )</td></tr><tr><td>다니다</td><td>जानुहोस् ( Go to and from a aplace )</td></tr><tr><td>얼마나</td><td>कति ( How many, how much )</td></tr><tr><td>자체</td><td>आफै ( one’s own body )</td></tr><tr><td>열다</td><td>खोल्नुहोस् ( Open )</td></tr><tr><td>머리</td><td>टाउको ( Head )</td></tr><tr><td>묻다</td><td>सोध्नु ( to Ask )</td></tr><tr><td>남다</td><td>बायाँ ( Remain, be left over )</td></tr><tr><td>부분</td><td>आंसिक काम ( part,portion )</td></tr><tr><td>기업</td><td>उद्यम ( An enterprise or business )</td></tr><tr><td>변화</td><td>परिवर्तन ( Change, transformation )</td></tr><tr><td>아들</td><td>छोरा ( son,baby )</td></tr><tr><td>아</td><td>आह ( Oh dear )</td></tr><tr><td>선거</td><td>चुनाव ( An election )</td></tr><tr><td>관하다</td><td>शासन गर्ने ( Refer to or be about )</td></tr><tr><td>분</td><td>मिनेट ( Minutes )</td></tr><tr><td>그냥</td><td>मात्र ( Just because or in that condition )</td></tr><tr><td>나누다</td><td>विभाजन ( To divide )</td></tr><tr><td>이용하다</td><td>प्रयोग गर्नुहोस् ( To use, make use of )</td></tr><tr><td>거의</td><td>लगभग ( Almost or nearly )</td></tr><tr><td>곧</td><td>चाँडै ( Soon )</td></tr><tr><td>중심</td><td>केन्द्र ( The nucleus, the focus, the heart )</td></tr><tr><td>활동</td><td>गतिविधि ( Activity )</td></tr><tr><td>오늘</td><td>आज ( Today )</td></tr><tr><td>서로</td><td>एक अर्का ( mutually,one another )</td></tr><tr><td>관심</td><td>ब्याज ( Concern or interest )</td></tr><tr><td>역시</td><td>पनि ( As expected, likewise )</td></tr><tr><td>이거</td><td>यो ( This thing )</td></tr><tr><td>애</td><td>बच्चा ( A baby, or a slightly derogative word for person )</td></tr><tr><td>광고</td><td>विज्ञापन ( Advertisement )</td></tr><tr><td>방</td><td>कोठा ( A room )</td></tr><tr><td>정신</td><td>मानसिक ( mind,spirit )</td></tr><tr><td>이르다</td><td>प्रारम्भिक ( To reach, arrive, get at )</td></tr><tr><td>이루다</td><td>पूरा भयो ( Accomplish, complete )</td></tr><tr><td>아침</td><td>बिहान ( Morning )</td></tr><tr><td>웃다</td><td>हाँस्न ( To laugh, smile )</td></tr><tr><td>현상</td><td>घटना ( The present situation, state )</td></tr><tr><td>기술</td><td>प्रविधि ( Art or technique or ability )</td></tr>
 
 </table>
@@ -503,64 +464,39 @@ tr td:nth-child(2)  {background-color: #eee; color:#000; padding: 1px 1Px 1px 0p
 <tr><td>Unit - 60 산업 안전 IⅡ </td><td>[औधोगिक सुरक्षा-।।]</td></tr><tr><td>가공</td><td>प्रक्रिया</td></tr><tr><td>가동한상태</td><td>चलिरहेको (संचालित) अवस्थामा</td></tr><tr><td>감시원</td><td>निरिक्षण गर्ने व्यक्ति</td></tr><tr><td>감시자배치</td><td>निरिक्षण कर्ता नियुक्ति (राख्नु)</td></tr><tr><td>강풍</td><td>आँधीहुरी</td></tr><tr><td>개인보호구</td><td>व्यक्तिगत सुरक्षाको सामान</td></tr><tr><td>갱폼작업</td><td>मचानको काम</td></tr><tr><td>거푸집동바리조립</td><td>फर्माको छेउ जडान</td></tr><tr><td>거푸집작업</td><td>फर्माको काम</td></tr><tr><td>건축업</td><td>निर्माण उ‌द्योग</td></tr><tr><td>검토되다</td><td>समिक्षा गर्नु</td></tr><tr><td>고무장갑</td><td>रबर पन्जा</td></tr><tr><td>고압가공전선</td><td>हाइ भोल्टेजको करेन्ट प्रवाहहुने माथितिरको तार</td></tr><tr><td>고정시킨</td><td>स्थिर राख्नु</td></tr><tr><td>공기중으로</td><td>हावाबाट</td></tr><tr><td>교환</td><td>विनिमय / आदानप्रदान</td></tr><tr><td>구명줄설치</td><td>जीवनरक्षा डोरी जडान</td></tr><tr><td>구조검토</td><td>संरचना चेकजाच</td></tr><tr><td>기둥</td><td>पिलर</td></tr><tr><td>길</td><td>बाटो</td></tr><tr><td>높이</td><td>उचाई</td></tr><tr><td>단부</td><td>अन्त्य</td></tr><tr><td>달기로프</td><td>झुण्डीएर काम गर्ने डोरी</td></tr><tr><td>대비</td><td>तुलना</td></tr><tr><td>도장작업</td><td>रङ्ग लगाउने काम</td></tr><tr><td>동바리</td><td>अड्याउने टेको</td></tr><tr><td>떨어짐방지</td><td>खस्नाबाट रोकथाम</td></tr><tr><td>맞음위험</td><td>सम्बन्धि खतरा</td></tr><tr><td>매달려작업</td><td>झुन्डिएर गर्ने काम</td></tr><tr><td>무너짐방지</td><td>ढल्न बाट रोक्नु</td></tr><tr><td>미장(견출) 작업</td><td>प्लास्टरको काम</td></tr><tr><td>밀실하게</td><td>नजिक पर्ने काम</td></tr><tr><td>발끝막이판</td><td>खुट्टा टेक्ने सुरक्षित प्लेट</td></tr><tr><td>방지</td><td>रोकथाम</td></tr><tr><td>방지조치</td><td>रोकथामको उपाय</td></tr><tr><td>방지하다</td><td>रोकथाम गर्नु</td></tr><tr><td>방호조치</td><td>सुरक्षा स्थिति</td></tr><tr><td>배관경로</td><td>पाइपको बाटो</td></tr><tr><td>배치되다</td><td>राखिनु</td></tr><tr><td>범위내에</td><td>सिमा भित्र</td></tr><tr><td>벽돌</td><td>इँटा</td></tr><tr><td>벽체</td><td>वाल</td></tr><tr><td>보</td><td>बिम</td></tr><tr><td>부착</td><td>संलग्न/सम्बन्धि</td></tr><tr><td>부착설비</td><td>अड्काउने उपकरण</td></tr><tr><td>불침투성</td><td>भित्र असर नगर्ने</td></tr><tr><td>붕괴위험</td><td>झर्ने खतरा</td></tr><tr><td>상태</td><td>अवस्था</td></tr><tr><td>상하부동시에</td><td>माथि तल एकै समयमा</td></tr><tr><td>설비</td><td>उपकरण / समान</td></tr><tr><td>설치</td><td>लगाउनु/जोड्नु</td></tr><tr><td>설치되다</td><td>जडान हुनु</td></tr><tr><td>설치신호수</td><td>जडानको संकेत गर्ने व्यक्ति</td></tr><tr><td>설치해체</td><td>जोड्ने/हटाउने/निकाल्ने</td></tr><tr><td>섭취하다</td><td>सेवन गर्नु</td></tr><tr><td>수직사다리</td><td>ठाडो भर्यांग</td></tr><tr><td>순서</td><td>क्रम</td></tr><tr><td>슬래브</td><td>स्ल्याब</td></tr><tr><td>승강설비</td><td>तलमाथि गर्ने (लिफ्टिंग) उपकरण</td></tr><tr><td>신호수</td><td>संकेत फर्ने मान्छे</td></tr><tr><td>아웃리거</td><td>गाडी अड्‌याउने सरोर्ट</td></tr><tr><td>안전난간</td><td>सुरक्षित रेलिंग</td></tr><tr><td>안전대</td><td>सुरक्षित पेटी</td></tr><tr><td>안전성</td><td>सुरक्षा चुनौती</td></tr><tr><td>안전성사전</td><td>अग्रिम सुरक्षा</td></tr><tr><td>안전율</td><td>सुरक्षा तत्व</td></tr><tr><td>양</td><td>मात्रा</td></tr><tr><td>양호</td><td>राम्रो</td></tr><tr><td>연결통로</td><td>जडान गर्ने बाटो</td></tr><tr><td>올바르게착용하다</td><td>ठिक संग लगाउनु</td></tr><tr><td>외력</td><td>बाहिरी शक्ति</td></tr><tr><td>위험성</td><td>खतरा</td></tr><tr><td>유해</td><td>हानी</td></tr><tr><td>의견</td><td>विचार</td></tr><tr><td>의심</td><td>आशंका</td></tr><tr><td>이상유무를 감시하다</td><td>असामान्य अवस्थाको निरिक्षण गर्नु</td></tr><tr><td>인근</td><td>नजिकै</td></tr><tr><td>인양와이어로프</td><td>उठाउने तारको डोरी</td></tr><tr><td>인양장비</td><td>उठाउने उपकरण</td></tr><tr><td>인접개구부</td><td>नजिकको खुल्ला ठाउँ</td></tr><tr><td>일일작업량</td><td>एक-एक प्रयास</td></tr><tr><td>자재운반</td><td>सामग्री ओसार पसार</td></tr><tr><td>작업발판</td><td>कामको मचान</td></tr><tr><td>작업을 실시하다</td><td>काम गर्नु</td></tr><tr><td>작업장주변</td><td>कार्यस्थल आसपास</td></tr><tr><td>작업장하부</td><td>कार्यस्थल तलतिर</td></tr><tr><td>재료</td><td>सामाग्री</td></tr><tr><td>적절히이루어지다</td><td>राम्रोसंग हुनु / गरिनु</td></tr><tr><td>적정하다</td><td>उपयुक्त हुनु</td></tr><tr><td>적합한</td><td>उपयुक्त</td></tr><tr><td>절곡기</td><td>रड बंग्याउने मेशिन (बेण्डीङ्ङ्ग मेशिन)</td></tr><tr><td>접촉될위험</td><td>सम्पर्क हुने, छुने खतरा</td></tr><tr><td>정리정돈</td><td>व्यवस्थापन</td></tr><tr><td>조립</td><td>जडान</td></tr><tr><td>조적중인</td><td>डकर्मीले बनाईरहेको</td></tr><tr><td>조정작업</td><td>गाह्रो लगाउने काम</td></tr><tr><td>조치</td><td>उपाय</td></tr><tr><td>주의하다</td><td>ध्यान दिनु /ओशियार हुनु</td></tr><tr><td>준수되다</td><td>निर्देशन अनुसारको हुनु</td></tr><tr><td>준수하다</td><td>पालना गर्नु</td></tr><tr><td>중량</td><td>भार / वजन</td></tr><tr><td>즉시</td><td>तत्कालै</td></tr><tr><td>증상이생긴경우</td><td>लक्षण देखिएको अवस्थामा</td></tr><tr><td>지면까지닿을만큼</td><td>भुइँसम्म पुग्ने जति</td></tr><tr><td>지반침해방지</td><td>जमिन धसिन बाट सावधानी</td></tr><tr><td>직어병예방</td><td>पेशागत रोग निवारण</td></tr><tr><td>직접손</td><td>सिधा हातले</td></tr><tr><td>진행되다</td><td>प्रक्रियामा (भइरहेक) हुनु</td></tr><tr><td>찔리다</td><td>जाकिनु</td></tr><tr><td>철골부재</td><td>स्टिल फ्रेमवर्क</td></tr><tr><td>철골작업</td><td>स्टिलको काम</td></tr><tr><td>철근작업</td><td>रडको काम</td></tr><tr><td>최소화하도록</td><td>घटाउनको लागि</td></tr><tr><td>추락방지망</td><td>खस्नबाट रोक्ने जाल</td></tr><tr><td>출이통로</td><td>प्रवेश खण्ड</td></tr><tr><td>충분한가</td><td>पर्याप्त</td></tr><tr><td>충분히</td><td>पर्याप्त</td></tr><tr><td>충분히이루어지다</td><td>पर्याप्तरुपमा हुनु</td></tr><tr><td>취급상</td><td>प्रयोग गर्दै गर्दा</td></tr><tr><td>취급하다</td><td>प्रयोग गर्नु / चलाउनु</td></tr><tr><td>콘크리트</td><td>कंक्रिट</td></tr><tr><td>콘크리트펌프카</td><td>कंक्रिट पम्प गाडी</td></tr><tr><td>통제</td><td>नियन्त्रण</td></tr><tr><td>파손되다</td><td>चुडिनु</td></tr><tr><td>풀리다</td><td>खुस्कनु</td></tr><tr><td>피부손상</td><td>छालाको क्षति (नोक्सान)</td></tr><tr><td>해체작업</td><td>भत्काउने काम / निकाल्ने काम</td></tr><tr><td>호흡용보호구</td><td>स्वासप्रस्वासका सुरक्षित उपकरण</td></tr><tr><td>화학물질</td><td>रासायनिक पदार्थ</td></tr><tr><td>확보</td><td>सुरक्षित</td></tr><tr><td>환기장치</td><td>भेन्टिलेसन सिष्टम</td></tr>
 </table>
 
-
-
-
+<div id="scrollToTopButton" onclick="scrollToTop()">↑</div>
 <script>
-
-function checkScreenSize() {
-    if (window.innerWidth >= 1000) {
-        document.getElementById('chapterWiseBtn').style.display = 'none';
+window.addEventListener('load', function() {
+    var random = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+    let className = "B" + random;
+    let table = document.querySelector("table." + className);
+    if (table) {
+        table.style.display = 'block';
     } else {
-        document.getElementById('chapterWiseBtn').style.display = 'block';
+        console.error("No table found with class: " + className);
     }
-}
-window.onload = checkScreenSize;
-window.onresize = checkScreenSize;
-
-
-function display(className) {
-    document.querySelectorAll('table').forEach(table => table.style.display = 'none');
-    const selectedTable = document.querySelector(`table.${className}`);
-    if (selectedTable) selectedTable.style.display = 'flex';
-}
-
-document.querySelectorAll('.dropdown-content button').forEach(button => {
-    button.addEventListener('click', function() {
-        display(this.className);
-    });
 });
 
-function showChapters() { 
-document.getElementById('mbla').style.display = 'block';
-document.getElementById('mblb').style.display = 'block';
-document.getElementById('mblc').style.display = 'block';
+function checkScreenSize() {if (window.innerWidth >= 1000) {document.getElementById('chapterWiseBtn').style.display = 'none';document.getElementById('Refresh').style.display = 'none';} else {document.getElementById('chapterWiseBtn').style.display = 'block';document.getElementById('Refresh').style.display = 'block';}}
+window.onload = checkScreenSize;
+window.onresize = checkScreenSize;
+function display(className) {document.querySelectorAll('table').forEach(table => table.style.display = 'none');const selectedTable = document.querySelector(`table.${className}`);if (selectedTable) selectedTable.style.display = 'flex';}
+document.querySelectorAll('.dropdown-content button').forEach(button => {button.addEventListener('click', function() {display(this.className);});});
+function showChapters() {document.getElementById('mbla').style.display = 'block';document.getElementById('mblb').style.display = 'block';document.getElementById('mblc').style.display = 'block';document.getElementById('mblBa').style.display = 'none';document.getElementById('mblBb').style.display = 'none';document.getElementById('mblBc').style.display = 'none';}
+function toggleSecondColumn() {document.querySelectorAll('tr td:nth-child(2)').forEach(cell => {if (!cell.dataset.originalContent) {cell.dataset.originalContent = cell.textContent;cell.textContent = '';} else {cell.textContent = cell.textContent === '' ? cell.dataset.originalContent : '';}});}
+document.addEventListener('click', (event) => {const isTableCell = event.target.tagName === 'TD';const cellIndex = event.target.cellIndex;if (isTableCell && cellIndex === 0) {toggleSecondColumn();} else if (isTableCell && cellIndex === 1) {const cell = event.target;if (!cell.dataset.originalContent) {cell.dataset.originalContent = cell.textContent;cell.textContent = '';} else {cell.textContent = cell.textContent === '' ? cell.dataset.originalContent : '';}}});
+window.onscroll = function() {if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {document.getElementById("scrollToTopButton").style.display = "block";} else {document.getElementById("scrollToTopButton").style.display = "none";}};
+function scrollToTop() {document.body.scrollTop = 0;document.documentElement.scrollTop = 0;}
 
- document.getElementById('mblBa').style.display = 'none'; 
- document.getElementById('mblBb').style.display = 'none'; 
- document.getElementById('mblBc').style.display = 'none'; }
- 
-function toggleSecondColumn() {document.querySelectorAll('tr td:nth-child(2)').forEach(cell => {if (!cell.dataset.originalContent)
- {cell.dataset.originalContent = cell.textContent;cell.textContent = '';} else {cell.textContent = cell.textContent === '' ? cell.dataset.originalContent : '';}});}
- document.addEventListener('click', (event) => {const isTableCell = event.target.tagName === 'TD';const cellIndex = event.target.cellIndex;
- if (isTableCell && cellIndex === 0) {toggleSecondColumn();} else if (isTableCell && cellIndex === 1) {const cell = event.target;if (!cell.dataset.originalContent)
- {cell.dataset.originalContent = cell.textContent;cell.textContent = '';} else {cell.textContent = cell.textContent === '' ? cell.dataset.originalContent : '';}}});
-
-
-window.onscroll = function() {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        document.getElementById("scrollToTopButton").style.display = "block";
-    } else {
-        document.getElementById("scrollToTopButton").style.display = "none";
-    }
-};
-
-function scrollToTop() {
-    document.body.scrollTop = 0; 
-    document.documentElement.scrollTop = 0; 
-}
+document.getElementById('chapterWiseBtn').addEventListener('click', function() {
+    var random = Math.floor(Math.random() * (60 - 5 + 1)) + 5;
+    let className = "table.ch" + random;
+    showChapters();
+    document.querySelector(className).style.display = 'block';
+});
 
 </script>
+
 
 </body>
 </html>
