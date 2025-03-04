@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>beasdfui edsncebdsvfedscohbvcnedsj ewibcwj</title>
+    <title>USD to NPR Exchange Rate - Last 300 Days</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             max-width: 800px;
-            margin: 0;
-            padding: 0;
+            margin: 20px auto;
+            padding: 20px;
         }
         #result {
-            margin-top: 0px;
+            margin-top: 20px;
             padding: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -44,7 +44,7 @@
     
 
   <table id="result"></table> 
-  <script>
+ <script>
         async function fetchPage(fromDateStr, toDateStr, page) {
             const params = new URLSearchParams({
                 page: page,
@@ -130,7 +130,7 @@
                         </table>
                     `;
                 } else {
-                    resultDiv.innerHTML = '<p class="error">No USD rates found in the last 300 days</p>';
+                    resultDiv.innerHTML = '<p class="error">err</p>';
                 }
 
             } catch (error) {
