@@ -1,18 +1,144 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>m2</title><style>body{margin:0;padding:0;height:100vh;overflow:hidden;}.pdf-container,.pdf-container object{width:100%;height:100%;}#nextBtn,#prevBtn{position:fixed;bottom:10px;padding:10px;background-color:#0048ca;color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:16px;opacity:1;width:40px;text-align:center;}#nextBtn{right:10px;font-size:20px;}#prevBtn{left:10px;font-size:20px;}
-#ps{margin:0;padding:0;width:110px;align-items:center;justify-content:space-around;padding:5px;background:#000;color:#fff;position:fixed;height:90px;top:0;left:0;border-radius:1px;font-size:15px; text-align:center;}#timeDisplay{font-size:22px;}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beasdfui edsncebdsvfedscohbvcnedsj ewibcwj</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .loading { color: #666; }
+        .error { color: red; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+        th {
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+  
+   
+    
 
-#nepse{width:800px; height:200px;overflow-y:hidden;margin:0;padding:0;position:fixed; top:-100px;left:-370px;background:#fff;}
-</style></head>
+  <div id="result"></div> 
+  <script>
+        async function fetchPage(fromDateStr, toDateStr, page) {
+            const params = new URLSearchParams({
+                page: page,
+                per_page: 100, 
+                from: fromDateStr,
+                to: toDateStr
+            });
+            
+            const response = await fetch(`https://www.nrb.org.np/api/forex/v1/rates?${params}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        }
 
-<body> <iframe  id="nepse" src="https://chukul.com/nepse-live-market"></iframe>
-<div id="prevBtn" onclick="getPrevNs();">&#x23EA;</div> <div id="nextBtn"  onclick="getNextNs();">&#x23E9;</div>
-<div id="ps"onclick="window.location.href='https://nishandangi.github.io/b/meaning'"><div id="englishDateDisplay"></div>
-<div   id="mypatro_nepali_date" ></div><div   id="timeDisplay" ></div></div>
+        async function getExchangeRates() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p class="loading">Loading...</p>';
 
-<div class="pdf-container"><object id="pdf-viewer" ></object></div>
-<script>
-        function refreshIframe() { var iframe = document.getElementById('nepse'); iframe.src = iframe.src; }setInterval(refreshIframe, 20000);
+            try {
+                const today = new Date();
+                const fromDate = new Date();
+                fromDate.setDate(today.getDate() - 300); 
+
+                const toDateStr = today.toISOString().split('T')[0];
+                const fromDateStr = fromDate.toISOString().split('T')[0];
+
+                let allRates = [];
+                let currentPage = 1;
+                let hasMorePages = true;
+
+                // Fetch all pages
+                while (hasMorePages) {
+                    const data = await fetchPage(fromDateStr, toDateStr, currentPage);
+                    console.log(`Page ${currentPage} Response:`, data);
+
+                    if (data.data.payload && data.data.payload.length > 0) {
+                        const pageRates = data.data.payload
+                            .map(day => {
+                                const usdRate = day.rates.find(rate => 
+                                    rate.currency.iso3 === 'USD' || 
+                                    rate.currency.name === 'U.S. Dollar'
+                                );
+                                return usdRate ? {
+                                    date: day.date,
+                                    buy: usdRate.buy,
+                                    sell: usdRate.sell
+                                } : null;
+                            })
+                            .filter(rate => rate !== null);
+                        
+                        allRates = allRates.concat(pageRates);
+                    }
+
+                    // Check pagination
+                    hasMorePages = data.pagination?.pages > currentPage;
+                    currentPage++;
+                }
+
+                // Sort and display
+                const sortedRates = allRates.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                if (sortedRates.length > 0) {
+                    resultDiv.innerHTML = `
+                        <h2>USD to NPR Rates (Last ${sortedRates.length} Days)</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Buy (NPR)</th>
+                                    <th>Sell (NPR)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${sortedRates.map(rate => `
+                                    <tr>
+                                        <td>${rate.date}</td>
+                                        <td>${rate.buy}</td>
+                                        <td>${rate.sell}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    resultDiv.innerHTML = '<p class="error">No USD rates found in the last 300 days</p>';
+                }
+
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">Error fetching exchange rates: ${error.message}</p>`;
+            }
+        }
+
+        window.onload = getExchangeRates;
     </script>
-<script>function getQueryParam(param){let urlParams=new URLSearchParams(window.location.search);return urlParams.get(param);}function showPdf(){const pdfViewer=document.getElementById('pdf-viewer');const dataParam=getQueryParam('ns');switch(dataParam){case'1':pdfViewer.data='https://www.news.nepsetrading.com/tag/stock?lang=np';break;case'2':pdfViewer.data='https://www.sharesansar.com/category/latest';break;case'3':pdfViewer.data='https://nepsesharehub.com/news';break;case'4':pdfViewer.data='https://merolagani.com/NewsList.aspx';break;case'5':pdfViewer.data='https://nepsealpha.com/all-news?cid=1';break;case'6':pdfViewer.data='https://chukul.com/announcement';break;case'7':pdfViewer.data='https://arthasarokar.com/category/market-affairs';break;case'8':pdfViewer.data='https://www.beemapost.com/category/stock-market/';break;case'9':pdfViewer.data='https://www.onlinekhabar.com/business/';break;case'10':pdfViewer.data='https://nepali.investopaper.com/%e0%a4%b6%e0%a5%87%e0%a4%af%e0%a4%b0-%e0%a4%ac%e0%a4%9c%e0%a4%be%e0%a4%b0/';break;case'11':pdfViewer.data='https://www.arthatantra.com/category/share-news/';break;case'12':pdfViewer.data='https://www.nepalipaisa.com/news';break;case'13':pdfViewer.data='https://arthaplus.com/category/stak-market';break;case'14':pdfViewer.data='https://arthakendra.com/category/stock-market';break;case'15':pdfViewer.data='https://www.arthapath.com/category/share-market/';break;case'16':pdfViewer.data='https://insurancekhabar.com/category/news/';break;case'17':window.open('https://arthasansar.com/category/share-market/','_blank');return;case'18':window.open('https://www.corporatenepal.com/category/market','_blank');return;default:pdfViewer.data='https://www.sharesansar.com/category/ipo-fpo-news';break;}}function getNextNs(){const currentNs=parseInt(getQueryParam('ns'))||0;return(currentNs%18)+1;}function getPrevNs(){const currentNs=parseInt(getQueryParam('ns'))||1;return((currentNs-2+18)%18)+1;}function updateUrlParam(param,value){const url=new URL(window.location);url.searchParams.set(param,value);window.location.href=url.toString();}document.addEventListener('DOMContentLoaded',()=>{showPdf();document.getElementById('nextBtn').addEventListener('click',()=>{const nextNs=getNextNs();updateUrlParam('ns',nextNs);});document.getElementById('prevBtn').addEventListener('click',()=>{const prevNs=getPrevNs();updateUrlParam('ns',prevNs);});});function displayTime(){let date=new Date();let time=date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();document.getElementById('timeDisplay').innerHTML=time;}setInterval(displayTime,1000);let _mypatroDateFormat=2;let _mypatroResponseType='html';let script=document.createElement('script');script.src='https://mypatro.com/resources/nepali_date/nepali_date.js';document.head.appendChild(script);
-function displayEnglishDate(){let date=new Date();let options={year:'numeric',month:'long',day:'numeric'};let englishDate=date.toLocaleDateString('en-US',options);document.getElementById('englishDateDisplay').innerHTML=englishDate;}displayEnglishDate();
-function handleKeyPress(event){if(event.key==='ArrowLeft'){getPrevNs();}if(event.key==='ArrowRight'){getNextNs();}}</script></body></html>
+</body>
+</html>
